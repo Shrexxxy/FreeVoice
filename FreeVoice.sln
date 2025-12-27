@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeVoice.Front.Server", "Fron\FreeVoice.Front.Server\FreeVoice.Front.Server.csproj", "{92F2D264-230F-4F3B-A379-7FB0C61AF619}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeVoice.Front.Server", "Front\FreeVoice.Front.Server\FreeVoice.Front.Server.csproj", "{92F2D264-230F-4F3B-A379-7FB0C61AF619}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeVoice.Front.Client", "Fron\FreeVoice.Front.Client\FreeVoice.Front.Client.csproj", "{76803A88-10F0-4CEF-832D-9155485D4177}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeVoice.Front.Client", "Front\FreeVoice.Front.Client\FreeVoice.Front.Client.csproj", "{76803A88-10F0-4CEF-832D-9155485D4177}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeVoice.Front.Shared", "FreeVoice.Front.Shared\FreeVoice.Front.Shared.csproj", "{0FA77CED-7EA8-48C7-AC9A-39079644B241}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeVoice.Front.Shared", "Front\FreeVoice.Front.Shared\FreeVoice.Front.Shared.csproj", "{0FA77CED-7EA8-48C7-AC9A-39079644B241}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionFolder", "{3934D809-4237-496E-AF83-34CA400089EE}"
 	ProjectSection(SolutionItems) = preProject

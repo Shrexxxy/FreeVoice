@@ -38,10 +38,11 @@ app.UseAuthorization();
 app.UseHttpsRedirection();
 app.UseAntiforgery();
 app.MapStaticAssets();
+
 app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(FreeVoice.Front.Client._Imports).Assembly);
-
+app.MapFallbackToFile("App.razor");
 //  Endpoint для WebSocket в Program.cs
 app.MapGet("/ws/{roomId}/{userName}", async (
     HttpContext context, 
