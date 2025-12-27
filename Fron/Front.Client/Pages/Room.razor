@@ -1,21 +1,34 @@
 ﻿@page "/room"
 
-<MudPaper Class="mt-5">
-    <MudChat ChatPosition="ChatBubblePosition.Start">
-        <MudChatBubble>
-            It's over Anakin
-        </MudChatBubble>
-        <MudChatBubble>
-            I have the high ground.
-        </MudChatBubble>
-    </MudChat>
-    <MudChat ChatPosition="ChatBubblePosition.End">
-        <MudChatBubble>
-            You underestimate my power!
-        </MudChatBubble>
-    </MudChat>
-</MudPaper>
+<MudStack Justify="Justify.SpaceBetween">
+    <MudPaper Class="mt-5">
+        <MudChat ChatPosition="ChatBubblePosition.Start">
+            <MudChatBubble>
+                It's over Anakin
+            </MudChatBubble>
+            <MudChatBubble>
+                I have the high ground.
+            </MudChatBubble>
+        </MudChat>
+        <MudChat 
+            ChatPosition="ChatBubblePosition.End">
+            <MudChatBubble>
+                You underestimate my power!
+            </MudChatBubble>
+        </MudChat>
+    </MudPaper>
 
-<MudInputString Label="Ввод">
+    <MudStack Row>
+        <MudTextField
+            T="string"
+            @bind-Value="_message"
+            FullWidth
+            HelperText="Введите сообщение"
+            Label="Ввод">
     
-</MudInputString>
+        </MudTextField>
+        
+        <MudIconButton Icon="@Icons.Material.Filled.Send"/>
+    </MudStack>
+
+</MudStack>
