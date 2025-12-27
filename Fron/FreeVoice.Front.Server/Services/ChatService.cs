@@ -2,9 +2,9 @@ using System.Collections.Concurrent;
 using System.Net.WebSockets;
 using System.Text;
 using System.Text.Json;
-using Shared.Model;
+using FreeVoice.Front.Shared.Model;
 
-namespace Fron.Services;
+namespace FreeVooce.Front.Server.Services;
 
 public class ChatService
 {

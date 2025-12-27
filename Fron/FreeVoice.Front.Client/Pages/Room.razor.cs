@@ -1,10 +1,9 @@
-using Fron.Client.ViewModels;
+using FreeVoice.Front.Client.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
-using Shared.Model;
 
-namespace Fron.Client.Pages;
+namespace FreeVoice.Front.Client.Pages;
 
 public partial class Room : ComponentBase
 {

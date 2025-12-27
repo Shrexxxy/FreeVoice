@@ -1,4 +1,4 @@
-﻿namespace Shared.Model;
+﻿namespace FreeVoice.Front.Shared.Model;
 
 public class ChatMessage
 {

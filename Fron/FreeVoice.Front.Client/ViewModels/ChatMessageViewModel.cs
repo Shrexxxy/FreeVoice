@@ -1,4 +1,4 @@
-namespace Fron.Client.ViewModels;
+namespace FreeVoice.Front.Client.ViewModels;
 
 
 public record ChatMessageViewModel

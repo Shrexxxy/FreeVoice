@@ -4,13 +4,13 @@
         <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <RootNamespace>Fron</RootNamespace>
+        <RootNamespace>FreeVooce.Front.Server</RootNamespace>
     </PropertyGroup>
 
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Shared\Shared.csproj" />
-        <ProjectReference Include="..\Front.Client\Front.Client.csproj" />
+        <ProjectReference Include="..\..\FreeVoice.Front.Shared\FreeVoice.Front.Shared.csproj" />
+        <ProjectReference Include="..\FreeVoice.Front.Client\FreeVoice.Front.Client.csproj" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.*"/>
     </ItemGroup>
 

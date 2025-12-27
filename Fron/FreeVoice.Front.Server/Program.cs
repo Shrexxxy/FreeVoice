@@ -1,7 +1,6 @@
+using FreeVooce.Front.Server.Components;
+using FreeVooce.Front.Server.Services;
 using MudBlazor.Services;
-using Fron.Client.Pages;
-using Fron.Components;
-using Fron.Services;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,7 +29,7 @@ app.UseAntiforgery();
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(Fron.Client._Imports).Assembly);
+    .AddAdditionalAssemblies(typeof(FreeVoice.Front.Client._Imports).Assembly);
 
 //  Endpoint для WebSocket в Program.cs
 app.MapGet("/ws/{roomId}/{userName}", async (

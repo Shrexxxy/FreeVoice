@@ -6,16 +6,16 @@
         <Nullable>enable</Nullable>
         <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
         <StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>
-        <RootNamespace>Fron.Client</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="9.0.11" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.*"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="9.0.11" />
         <PackageReference Include="MudBlazor" Version="8.*"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Shared\Shared.csproj" />
+      <ProjectReference Include="..\..\FreeVoice.Front.Shared\FreeVoice.Front.Shared.csproj" />
     </ItemGroup>
-
 </Project>

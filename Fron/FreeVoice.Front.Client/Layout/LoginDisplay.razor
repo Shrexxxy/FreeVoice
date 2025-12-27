@@ -1,0 +1,10 @@
+@using Microsoft.AspNetCore.Components.Authorization
+<AuthorizeView>
+    <Authorized>
+        <MudText>Рады вас видеть</MudText>
+    </Authorized>
+    <NotAuthorized>
+        <MudButton Variant="Variant.Filled">Войти</MudButton>
+        <MudButton Variant="Variant.Outlined">Регистрация</MudButton>
+    </NotAuthorized>
+</AuthorizeView>
