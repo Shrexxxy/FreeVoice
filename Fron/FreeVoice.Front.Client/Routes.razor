@@ -1,6 +1,17 @@
-﻿<Router AppAssembly="typeof(Program).Assembly">
+﻿@using FreeVoice.Front.Client.Layout
+@using Microsoft.AspNetCore.Components.Authorization
+<Router AppAssembly="typeof(Program).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)"/>
+        <AuthorizeRouteView
+            RouteData="@routeData"
+            DefaultLayout="@typeof(MainLayout)">
+            <NotAuthorized>
+                <!-- Сообщение для неавторизованных -->
+            </NotAuthorized>
+            <Authorizing>
+                <!-- Индикатор загрузки -->
+            </Authorizing>
+        </AuthorizeRouteView>
         <FocusOnNavigate RouteData="routeData" Selector="h1"/>
     </Found>
 </Router>
