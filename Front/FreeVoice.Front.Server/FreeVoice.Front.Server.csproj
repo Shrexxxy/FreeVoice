@@ -12,6 +12,7 @@
         <ProjectReference Include="..\..\FreeVoice.Front.Shared\FreeVoice.Front.Shared.csproj" />
         <ProjectReference Include="..\FreeVoice.Front.Client\FreeVoice.Front.Client.csproj" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.*"/>
+        <ProjectReference Include="..\FreeVoice.Front.Shared\FreeVoice.Front.Shared.csproj" />
     </ItemGroup>
 
 </Project>
