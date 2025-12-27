@@ -1,34 +1,34 @@
 ﻿@page "/room"
 
 <MudStack Justify="Justify.SpaceBetween">
-    <MudPaper Class="mt-5">
-        <MudChat ChatPosition="ChatBubblePosition.Start">
-            <MudChatBubble>
-                It's over Anakin
-            </MudChatBubble>
-            <MudChatBubble>
-                I have the high ground.
-            </MudChatBubble>
-        </MudChat>
-        <MudChat 
-            ChatPosition="ChatBubblePosition.End">
-            <MudChatBubble>
-                You underestimate my power!
-            </MudChatBubble>
-        </MudChat>
+    <MudPaper Class="mt-5 pa-4" Style="height: 70vh; overflow-y: auto;">
+        @foreach (var message in _messages)
+        {
+            <MudChat ChatPosition="ChatBubblePosition.End">
+                <MudChatBubble>
+                    @message.Text
+                </MudChatBubble>
+            </MudChat>
+        }
     </MudPaper>
 
-    <MudStack Row>
-        <MudTextField
-            T="string"
-            @bind-Value="_message"
-            FullWidth
-            HelperText="Введите сообщение"
-            Label="Ввод">
-    
-        </MudTextField>
-        
-        <MudIconButton Icon="@Icons.Material.Filled.Send"/>
-    </MudStack>
+    <EditForm @ref="_form" Model="_model">
+        <MudStack Row Justify="Justify.SpaceBetween">
+            <MudTextField
+                @ref="_messageInput"
+                T="string"
+                @bind-Value="_model.Message"
+                HelperText="Введите сообщение"
+                Label="Ввод">
+            </MudTextField>
 
+            <MudIconButton
+                ButtonType="ButtonType.Submit"
+                Class="m-2"
+                Size="Size.Large"
+                Icon="@Icons.Material.Filled.Send"
+                OnClick="SendMessage"/>
+        </MudStack>
+    </EditForm>
+    
 </MudStack>
