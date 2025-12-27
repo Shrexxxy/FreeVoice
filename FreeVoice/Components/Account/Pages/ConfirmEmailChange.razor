@@ -9,9 +9,9 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Confirm email change</PageTitle>
+<PageTitle>Подтверждение изменения email</PageTitle>
 
-<h1>Confirm email change</h1>
+<h1>Подтверждение изменения email</h1>
 
 <StatusMessage Message="@message" />
 
@@ -35,13 +35,13 @@
         if (UserId is null || Email is null || Code is null)
         {
             RedirectManager.RedirectToWithStatus(
-                "Account/Login", "Error: Invalid email change confirmation link.", HttpContext);
+                "Account/Login", "Ошибка: Неверная ссылка подтверждения изменения email.", HttpContext);
         }
 
         var user = await UserManager.FindByIdAsync(UserId);
         if (user is null)
         {
-            message = "Unable to find user with Id '{userId}'";
+            message = "Не удалось найти пользователя с Id '{userId}'";
             return;
         }
 
@@ -49,20 +49,20 @@
         var result = await UserManager.ChangeEmailAsync(user, Email, code);
         if (!result.Succeeded)
         {
-            message = "Error changing email.";
+            message = "Ошибка изменения email.";
             return;
         }
 
-        // In our UI email and user name are one and the same, so when we update the email
-        // we need to update the user name.
+        // В нашем интерфейсе email и имя пользователя - это одно и то же, поэтому при обновлении email
+        // нам также нужно обновить имя пользователя.
         var setUserNameResult = await UserManager.SetUserNameAsync(user, Email);
         if (!setUserNameResult.Succeeded)
         {
-            message = "Error changing user name.";
+            message = "Ошибка изменения имени пользователя.";
             return;
         }
 
         await SignInManager.RefreshSignInAsync(user);
-        message = "Thank you for confirming your email change.";
+        message = "Спасибо за подтверждение изменения вашего email.";
     }
 }

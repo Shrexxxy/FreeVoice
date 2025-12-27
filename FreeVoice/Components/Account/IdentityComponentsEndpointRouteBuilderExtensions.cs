@@ -1,16 +1,16 @@
 using System.Security.Claims;
 using System.Text.Json;
+using FreeVoice.Components.Account.Pages;
+using FreeVoice.Components.Account.Pages.Manage;
+using FreeVoice.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
-using FreeVoice.Components.Account.Pages;
-using FreeVoice.Components.Account.Pages.Manage;
-using FreeVoice.Data;
 
-namespace Microsoft.AspNetCore.Routing;
+namespace FreeVoice.Components.Account;
 
 internal static class IdentityComponentsEndpointRouteBuilderExtensions
 {

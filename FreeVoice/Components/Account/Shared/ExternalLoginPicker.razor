@@ -9,10 +9,10 @@
 
 @if (externalLogins.Length == 0)
 {
-    <MudAlert Variant="Variant.Text" Severity="Severity.Warning">There are no external authentication services configured.</MudAlert>
+    <MudAlert Variant="Variant.Text" Severity="Severity.Warning">Нет настроенных внешних служб аутентификации.</MudAlert>
     <MudText Typo="Typo.body1" Class="pt-4">
-        See <MudLink Target="_blank" Href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</MudLink>
-        about setting up this ASP.NET application to support logging in via external services
+        Смотрите <MudLink Target="_blank" Href="https://go.microsoft.com/fwlink/?LinkID=532715">эту статью</MudLink>
+        о настройке этого ASP.NET приложения для поддержки входа через внешние сервисы
     </MudText>
 }
 else
@@ -24,7 +24,7 @@ else
             <p>
                 @foreach (var provider in externalLogins)
                 {
-                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Войти с помощью вашей учетной записи @provider.DisplayName">@provider.DisplayName</button>
                 }
             </p>
         </div>

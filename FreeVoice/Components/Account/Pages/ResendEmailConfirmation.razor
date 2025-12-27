@@ -12,11 +12,11 @@
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Resend email confirmation</PageTitle>
+<PageTitle>Повторная отправка подтверждения email</PageTitle>
 
-<MudText Typo="Typo.h3" GutterBottom="true">Resend email confirmation</MudText>
+<MudText Typo="Typo.h3" GutterBottom="true">Повторная отправка подтверждения email</MudText>
 
-<MudText Typo="Typo.body1" GutterBottom="true">Enter your email.</MudText>
+<MudText Typo="Typo.body1" GutterBottom="true">Введите вашу электронную почту.</MudText>
 
 <StatusMessage Message="@message" />
 
@@ -26,11 +26,11 @@
     <MudGrid>
         <MudItem md="12">
             <MudStaticTextField For="@(() => Input.Email)" @bind-Value="Input.Email"
-                                Label="Email" Placeholder="name@example.com"
+                                Label="Электронная почта" Placeholder="имя@пример.com"
                                 UserAttributes="@(new() { { "autocomplete", "username" }, { "aria-required", "true" } } )" />
         </MudItem>
         <MudItem md="12">
-            <MudStaticButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true" FormAction="FormAction.Submit">Resend</MudStaticButton>
+            <MudStaticButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true" FormAction="FormAction.Submit">Отправить повторно</MudStaticButton>
         </MudItem>
     </MudGrid>
 </EditForm>
@@ -46,7 +46,7 @@
         var user = await UserManager.FindByEmailAsync(Input.Email!);
         if (user is null)
         {
-            message = "Verification email sent. Please check your email.";
+            message = "Письмо с подтверждением отправлено. Пожалуйста, проверьте вашу электронную почту.";
             return;
         }
 
@@ -58,7 +58,7 @@
             new Dictionary<string, object?> { ["userId"] = userId, ["code"] = code });
         await EmailSender.SendConfirmationLinkAsync(user, Input.Email, HtmlEncoder.Default.Encode(callbackUrl));
 
-        message = "Verification email sent. Please check your email.";
+        message = "Письмо с подтверждением отправлено. Пожалуйста, проверьте вашу электронную почту.";
     }
 
     private sealed class InputModel

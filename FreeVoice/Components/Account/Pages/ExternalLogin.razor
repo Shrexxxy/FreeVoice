@@ -16,17 +16,16 @@
 @inject IdentityRedirectManager RedirectManager
 @inject ILogger<ExternalLogin> Logger
 
-<PageTitle>Register</PageTitle>
+<PageTitle>Регистрация</PageTitle>
 
 <StatusMessage Message="@message" />
-<h1>Register</h1>
-<h2>Associate your @ProviderDisplayName account.</h2>
+<h1>Регистрация</h1>
+<h2>Привяжите ваш аккаунт @ProviderDisplayName.</h2>
 <MudDivider />
 
-<div  class="alert alert-info">
-    You've successfully authenticated with <strong>@ProviderDisplayName</strong>.
-    Please enter an email address for this site below and click the Register button to finish
-    logging in.
+<div class="alert alert-info">
+    Вы успешно прошли аутентификацию через <strong>@ProviderDisplayName</strong>.
+    Пожалуйста, введите адрес электронной почты для этого сайта ниже и нажмите кнопку "Зарегистрироваться", чтобы завершить вход.
 </div>
 
 <div class="row">
@@ -35,11 +34,11 @@
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" role="alert" />
             <div class="form-floating mb-3">
-                <InputText @bind-Value="Input.Email" id="Input.Email" class="form-control" autocomplete="email" placeholder="Please enter your email." />
-                <label for="Input.Email" class="form-label">Email</label>
+                <InputText @bind-Value="Input.Email" id="Input.Email" class="form-control" autocomplete="email" placeholder="Пожалуйста, введите вашу электронную почту." />
+                <label for="Input.Email" class="form-label">Электронная почта</label>
                 <ValidationMessage For="() => Input.Email" />
             </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Зарегистрироваться</button>
         </EditForm>
     </div>
 </div>
@@ -71,13 +70,13 @@
     {
         if (RemoteError is not null)
         {
-            RedirectManager.RedirectToWithStatus("Account/Login", $"Error from external provider: {RemoteError}", HttpContext);
+            RedirectManager.RedirectToWithStatus("Account/Login", $"Ошибка от внешнего провайдера: {RemoteError}", HttpContext);
         }
 
         var info = await SignInManager.GetExternalLoginInfoAsync();
         if (info is null)
         {
-            RedirectManager.RedirectToWithStatus("Account/Login", "Error loading external login information.", HttpContext);
+            RedirectManager.RedirectToWithStatus("Account/Login", "Ошибка загрузки информации внешнего входа.", HttpContext);
         }
 
         externalLoginInfo = info;
@@ -90,8 +89,8 @@
                 return;
             }
 
-            // We should only reach this page via the login callback, so redirect back to
-            // the login page if we get here some other way.
+            // Мы должны попасть на эту страницу только через колбэк входа, поэтому
+            // перенаправляем обратно на страницу входа, если мы попали сюда другим путем.
             RedirectManager.RedirectTo("Account/Login");
         }
     }
@@ -100,10 +99,10 @@
     {
         if (externalLoginInfo is null)
         {
-            RedirectManager.RedirectToWithStatus("Account/Login", "Error loading external login information.", HttpContext);
+            RedirectManager.RedirectToWithStatus("Account/Login", "Ошибка загрузки информации внешнего входа.", HttpContext);
         }
 
-        // Sign in the user with this external login provider if the user already has a login.
+        // Войдите пользователя с этим внешним провайдером, если у пользователя уже есть вход.
         var result = await SignInManager.ExternalLoginSignInAsync(
             externalLoginInfo!.LoginProvider,
             externalLoginInfo!.ProviderKey,
@@ -113,7 +112,7 @@
         if (result.Succeeded)
         {
             Logger.LogInformation(
-                "{Name} logged in with {LoginProvider} provider.",
+                "{Name} вошел в систему с помощью провайдера {LoginProvider}.",
                 externalLoginInfo.Principal.Identity?.Name,
                 externalLoginInfo.LoginProvider);
             RedirectManager.RedirectTo(ReturnUrl);
@@ -123,7 +122,7 @@
             RedirectManager.RedirectTo("Account/Lockout");
         }
 
-        // If the user does not have an account, then ask the user to create an account.
+        // Если у пользователя нет учетной записи, попросите пользователя создать учетную запись.
         if (externalLoginInfo.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
         {
             Input.Email = externalLoginInfo.Principal.FindFirstValue(ClaimTypes.Email) ?? "";
@@ -134,7 +133,7 @@
     {
         if (externalLoginInfo is null)
         {
-            RedirectManager.RedirectToWithStatus("Account/Login", "Error loading external login information during confirmation.", HttpContext);
+            RedirectManager.RedirectToWithStatus("Account/Login", "Ошибка загрузки информации внешнего входа во время подтверждения.", HttpContext);
         }
 
         var emailStore = GetEmailStore();
@@ -149,7 +148,7 @@
             result = await UserManager.AddLoginAsync(user, externalLoginInfo);
             if (result.Succeeded)
             {
-                Logger.LogInformation("User created an account using {Name} provider.", externalLoginInfo.LoginProvider);
+                Logger.LogInformation("Пользователь создал учетную запись с помощью провайдера {Name}.", externalLoginInfo.LoginProvider);
 
                 var userId = await UserManager.GetUserIdAsync(user);
                 var code = await UserManager.GenerateEmailConfirmationTokenAsync(user);
@@ -160,7 +159,7 @@
                     new Dictionary<string, object?> { ["userId"] = userId, ["code"] = code });
                 await EmailSender.SendConfirmationLinkAsync(user, Input.Email, HtmlEncoder.Default.Encode(callbackUrl));
 
-                // If account confirmation is required, we need to show the link if we don't have a real email sender
+                // Если требуется подтверждение учетной записи, нам нужно показать ссылку, если у нас нет реального отправителя электронной почты
                 if (UserManager.Options.SignIn.RequireConfirmedAccount)
                 {
                     RedirectManager.RedirectTo("Account/RegisterConfirmation", new() { ["email"] = Input.Email });
@@ -171,7 +170,7 @@
             }
         }
 
-        message = $"Error: {string.Join(",", result.Errors.Select(error => error.Description))}";
+        message = $"Ошибка: {string.Join(",", result.Errors.Select(error => error.Description))}";
     }
 
     private static ApplicationUser CreateUser()
@@ -182,8 +181,8 @@
         }
         catch
         {
-            throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
-                $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor");
+            throw new InvalidOperationException($"Невозможно создать экземпляр '{nameof(ApplicationUser)}'. " +
+                $"Убедитесь, что '{nameof(ApplicationUser)}' не является абстрактным классом и имеет конструктор без параметров");
         }
     }
 
@@ -191,15 +190,15 @@
     {
         if (!UserManager.SupportsUserEmail)
         {
-            throw new NotSupportedException("The default UI requires a user store with email support.");
+            throw new NotSupportedException("Требуется хранилище пользователей с поддержкой электронной почты.");
         }
         return (IUserEmailStore<ApplicationUser>)UserStore;
     }
 
     private sealed class InputModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "Поле электронной почты обязательно для заполнения")]
+        [EmailAddress(ErrorMessage = "Пожалуйста, введите действительный адрес электронной почты")]
         public string Email { get; set; } = "";
     }
 }
