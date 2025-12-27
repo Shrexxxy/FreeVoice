@@ -2,12 +2,16 @@ using MudBlazor.Services;
 using Fron.Client.Pages;
 using Fron.Components;
 using Fron.Services;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMudServices();
 builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
+
+//Регистрация сервисов
+builder.Services.AddScoped<ChatService>();
 
 var app = builder.Build();
 
@@ -30,8 +34,8 @@ app.MapRazorComponents<App>()
 
 //  Endpoint для WebSocket в Program.cs
 app.MapGet("/ws/{roomId}/{userName}", async (
-    HttpContext context,
-    ChatService chatService,
+    HttpContext context, 
+    [FromServices] ChatService chatService,
     string roomId,
     string userName) =>
 {
