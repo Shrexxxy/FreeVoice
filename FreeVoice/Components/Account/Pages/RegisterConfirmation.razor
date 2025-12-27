@@ -10,22 +10,22 @@
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Register confirmation</PageTitle>
+<PageTitle>Подтверждение регистрации</PageTitle>
 
-<h1>Register confirmation</h1>
+<h1>Подтверждение регистрации</h1>
 
 <StatusMessage Message="@statusMessage" />
 
 @if (emailConfirmationLink is not null)
 {
     <p>
-        This app does not currently have a real email sender registered, see <a class="mud-link mud-primary-text mud-link-underline-hover" href="https://aka.ms/aspaccountconf">these docs</a> for how to configure a real email sender.
-        Normally this would be emailed: <a class="mud-link mud-primary-text mud-link-underline-hover" href="@emailConfirmationLink">Click here to confirm your account</a>
+        В настоящее время в приложении не зарегистрирован реальный отправитель электронной почты, см. <a class="mud-link mud-primary-text mud-link-underline-hover" href="https://aka.ms/aspaccountconf">эту документацию</a> о том, как настроить реальный отправитель электронной почты.
+        Обычно это отправлялось бы по электронной почте: <a class="mud-link mud-primary-text mud-link-underline-hover" href="@emailConfirmationLink">Нажмите здесь, чтобы подтвердить вашу учетную запись</a>
     </p>
 }
 else
 {
-    <p role="alert">Please check your email to confirm your account.</p>
+    <p role="alert">Пожалуйста, проверьте вашу электронную почту, чтобы подтвердить вашу учетную запись.</p>
 }
 
 @code {
@@ -52,11 +52,11 @@ else
         if (user is null)
         {
             HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
-            statusMessage = "Error finding user for unspecified email";
+            statusMessage = "Ошибка поиска пользователя для указанной электронной почты";
         }
         else if (EmailSender is IdentityNoOpEmailSender)
         {
-            // Once you add a real email sender, you should remove this code that lets you confirm the account
+            // После добавления реального отправителя электронной почты вы должны удалить этот код, который позволяет подтвердить учетную запись
             var userId = await UserManager.GetUserIdAsync(user);
             var code = await UserManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
